@@ -1,9 +1,12 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject } from '@angular/core';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
