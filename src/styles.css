@@ -7,3 +7,8 @@
 .input-error-message{
     @apply text-red-400 text-xs mb-1 font-normal;
 }
+body{
+  background-image: url(https://flowbite.s3.amazonaws.com/blocks/marketing-ui/authentication/background.jpg);
+
+}
+

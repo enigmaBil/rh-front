@@ -6,10 +6,11 @@ import { HeaderComponent } from "./layouts/header/header.component";
 import { SidebarComponent } from "./layouts/sidebar/sidebar.component";
 import { FooterComponent } from "./layouts/footer/footer.component";
 import { SidebarRightComponent } from "./layouts/sidebar-right/sidebar-right.component";
+import {LoginComponent} from './views/auth/login/login.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, SidebarComponent, FooterComponent, SidebarRightComponent],
+  imports: [RouterOutlet, HeaderComponent, SidebarComponent, FooterComponent, SidebarRightComponent, LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
