@@ -2,7 +2,7 @@ import {Routes} from '@angular/router';
 
 export const feuilleTempRoute: Routes = [
   {
-    path: "feuilles-temps",
+    path: "",
     loadComponent: () => import("./feuille-temp-page/feuille-temp-page.component").then(c => c.FeuilleTempPageComponent)
   },
   {

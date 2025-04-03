@@ -1,16 +1,12 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FlowbiteService } from './core/services/flowbite.service';
-import { HeaderComponent } from "./layouts/header/header.component";
-import { SidebarComponent } from "./layouts/sidebar/sidebar.component";
-import { FooterComponent } from "./layouts/footer/footer.component";
-import { SidebarRightComponent } from "./layouts/sidebar-right/sidebar-right.component";
-import {LoginComponent} from './views/auth/login/login.component';
+import { FlowbiteService } from './core/services/flowbite/flowbite.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, SidebarComponent, FooterComponent, SidebarRightComponent, LoginComponent],
+  imports: [RouterOutlet, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

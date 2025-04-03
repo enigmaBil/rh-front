@@ -2,7 +2,7 @@ import {Routes} from '@angular/router';
 
 export const evaluationPerformanceRoute: Routes = [
   {
-    path: "evaluations",
+    path: "",
     loadComponent: () => import("./avaluation-performance-page/avaluation-performance-page.component").then(c => c.AvaluationPerformancePageComponent)
   },
   {

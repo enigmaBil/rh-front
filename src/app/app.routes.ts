@@ -8,6 +8,10 @@ import {authRoute} from './views/auth/auth.route';
 import {authGuard} from './core/guards/auth.guard';
 import {roleGuard} from './core/guards/role.guard';
 import {BaseComponent} from './layouts/base/base.component';
+import {EmployeDashboardComponent} from './views/dashboard/employe-dashboard/employe-dashboard.component';
+import {AdminDashboardComponent} from './views/dashboard/admin-dashboard/admin-dashboard.component';
+import {BaseEmployeComponent} from './layouts/base-employe/base-employe.component';
+import {EmployeProfilComponent} from './views/profils/employe-profil/employe-profil.component';
 
 
 export const routes: Routes = [
@@ -16,60 +20,73 @@ export const routes: Routes = [
     path: 'auth',
     children: authRoute,
   },
-
-  // Redirection automatique après login selon le rôle
-  // {
-  //   path: '',
-  //   canActivate: [roleGuard],
-  // },
-
+  //Routes protegées pour admin et rh
   {
     path: 'admin',
     component: BaseComponent,
+    canActivate: [authGuard],
     children: [
-      // Dashboard Employé (protégé)
-      {
-        path: 'dashboard-employe',
-        data:{
-          role: "EMPLOYE",
-        },
-        children: dashboardRoute,
-        canActivate: [roleGuard]
-      },
-
       // Dashboard Admin & RH (protégé)
       {
-        path: 'dashboard-admin',
-        data:{role: ["ADMIN", "RH"]},
-        children: dashboardRoute,
-        canActivate: [roleGuard]
+        path: 'dashboard',
+        component: AdminDashboardComponent,
+        canActivate: [roleGuard],
+        data:{roles: ["ADMIN", "RH"]},
       },
 
       // Autres routes protégées accessibles selon le rôle
       {
         path: 'conges',
         children: congesRoute,
-        //canActivate: [authGuard]
+        canActivate: [roleGuard],
+        data:{roles: ["ADMIN", "RH"]},
       },
       {
         path: 'employes',
         children: employeRoute,
-        canActivate: [authGuard]
+        canActivate: [roleGuard],
+        data:{roles: ["ADMIN", "RH"]},
       },
       {
         path: 'evaluation-performance',
         children: evaluationPerformanceRoute,
-        canActivate: [authGuard]
+        canActivate: [roleGuard],
+        data:{roles: ["ADMIN", "RH"]},
       },
       {
         path: 'feuille-temp',
         children: feuilleTempRoute,
-        canActivate: [authGuard]
+        canActivate: [roleGuard],
+        data:{roles: ["ADMIN", "RH"]},
+      },
+    ]
+  },
+
+  //Routes protégées pour employe
+  {
+    path: 'portal',
+    component: BaseEmployeComponent,
+    canActivate: [authGuard],
+    children: [
+      // Dashboard Employé (protégé)
+      {
+        path: 'home.face',
+        component: EmployeDashboardComponent,
+        canActivate: [roleGuard],
+        data: {roles: ['EMPLOYE']}
+      },
+
+      // Autres routes protégées accessibles selon le rôle
+      {
+        path: 'profile',
+        component: EmployeProfilComponent,
+        canActivate: [roleGuard],
+        data: {roles: ['EMPLOYE']}
       },
     ]
   },
 
   // Redirections
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/dashboard' },
+  //{ path: '**', redirectTo: '/auth/login' },
 ];
