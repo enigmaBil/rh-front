@@ -23,13 +23,13 @@ export const routes: Routes = [
   //Routes protegées pour admin et rh
   {
     path: 'admin',
-    component: BaseComponent,
+    loadComponent: () => import('./layouts/base/base.component').then(c => c.BaseComponent),
     canActivate: [authGuard],
     children: [
       // Dashboard Admin & RH (protégé)
       {
         path: 'dashboard',
-        component: AdminDashboardComponent,
+        loadComponent: () => import('./views/dashboard/admin-dashboard/admin-dashboard.component').then(c=>c.AdminDashboardComponent),
         canActivate: [roleGuard],
         data:{roles: ["ADMIN", "RH"]},
       },

@@ -12,3 +12,7 @@ body{
 
 }
 
+.active, .active svg{
+  @apply bg-blue-700 text-white dark:text-white ;
+}
+
