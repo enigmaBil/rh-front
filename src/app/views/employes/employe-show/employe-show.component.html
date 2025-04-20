@@ -1,1 +1,38 @@
-<p>employe-show works!</p>
+<app-breadcrumb></app-breadcrumb>
+<section class="bg-gray-50 dark:bg-gray-900 py-3 sm:py-5 px-4 mx-auto max-w-screen-2xl lg:px-12 ">
+    @if (user) {
+      <div class=" grid mb-8 border border-gray-200 rounded-lg shadow-xs dark:border-gray-700 md:mb-12 md:grid-cols-2 bg-white dark:bg-gray-800">
+        <!-- Nom -->
+        <figure class="flex flex-col items-center justify-center p-8 text-center bg-white  border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-ss-lg  dark:bg-gray-800 dark:border-gray-700">
+          <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Nom</h3>
+            <p class="my-4">{{user.name}}</p>
+          </blockquote>
+        </figure>
+  
+        <!-- Email -->
+        <figure class="flex flex-col items-center justify-center p-8 text-center bg-white  border-gray-200 md:rounded-se-lg dark:bg-gray-800 dark:border-gray-700">
+          <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Adresse Email</h3>
+            <p class="my-4">{{user.email}}</p>
+          </blockquote>
+        </figure>
+  
+        <!-- Role -->
+  
+        <figure class="flex flex-col items-center justify-center p-8 text-center bg-white  border-gray-200 md:rounded-se-lg dark:bg-gray-800 dark:border-gray-700">
+          <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Role</h3>
+            <p class="my-4">{{ user.role }}</p>
+          </blockquote>
+        </figure>
+      </div>
+  
+    } @else {
+      <div class="flex flex-col items-center justify-center p-8 text-center text-slate-200  mb-8 border border-gray-200 rounded-lg shadow-xs dark:border-gray-700 md:mb-12 bg-white dark:bg-gray-800">
+        Chargement...
+      </div>
+    }
+  </section>
+  
+  

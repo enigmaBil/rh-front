@@ -52,6 +52,7 @@ export class LoginComponent {
         if (error.status === 404) {
           this.errorMessage = "Adresse e-mail ou mot de passe incorrect.";
         }
+        this.loading$.next(false);
       },
       complete: () => {
         this.loading$.next(false); 

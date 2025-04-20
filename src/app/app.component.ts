@@ -1,8 +1,9 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { FlowbiteService } from './core/services/flowbite/flowbite.service';
 import {HttpClientModule} from '@angular/common/http';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +11,13 @@ import {HttpClientModule} from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'rh-front';
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
-    private flowbite: FlowbiteService,
-  ) {
-  }
-
+    private flowbite: FlowbiteService
+  ) {  }
+  
   ngOnInit(): void {
     this.flowbite.loadFlowbite(fb => {
       fb.initDropdowns()

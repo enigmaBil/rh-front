@@ -13,7 +13,9 @@ export class AuthService {
   private _currentUser = signal<User | null>(null)
   currentUser= this._currentUser.asReadonly();
   isConnected = computed(() => this.currentUser() !== null);
-   userRole?:string;
+  userRole?:string;
+  userName?:string;
+  userEmail?:string;
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +27,8 @@ export class AuthService {
         // Nous mettons à jour l'état de l'utilisateur connecté
         this.userRole = response.user.role;
         localStorage.setItem('userRole',this.userRole);
+        localStorage.setItem("userName", response.user.name);
+        localStorage.setItem("userEmail", response.user.email);
         this._currentUser.set(response.user);
       })
     );
