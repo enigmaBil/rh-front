@@ -31,7 +31,7 @@ export const routes: Routes = [
         path: 'dashboard',
         loadComponent: () => import('./views/dashboard/admin-dashboard/admin-dashboard.component').then(c=>c.AdminDashboardComponent),
         canActivate: [roleGuard],
-        data:{roles: ["ADMIN", "RH"]},
+        data:{roles: ["ADMIN", "RH"], breadcrumb: 'Dashboard'},
       },
 
       // Autres routes protégées accessibles selon le rôle
@@ -39,13 +39,13 @@ export const routes: Routes = [
         path: 'conges',
         children: congesRoute,
         canActivate: [roleGuard],
-        data:{roles: ["ADMIN", "RH"]},
+        data:{roles: ["ADMIN", "RH"], breadcrumb: 'Congés'},
       },
       {
         path: 'employes',
         children: employeRoute,
         canActivate: [roleGuard],
-        data:{roles: ["ADMIN", "RH"]},
+        data:{roles: ["ADMIN", "RH"], breadcrumb: 'Employés', url: 'admin/employes'},
       },
       {
         path: 'evaluation-performance',
