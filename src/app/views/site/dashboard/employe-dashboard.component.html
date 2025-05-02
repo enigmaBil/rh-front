@@ -1,1 +1,58 @@
-<p>employe-dashboard works!</p>
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
+      <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+        Bienvenue sur votre espace personnel
+      </h1>
+      <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">
+        Cet espace vous permet de gérer vos feuilles de temps, consulter vos informations personnelles, suivre vos demandes et rester informé des actualités de l'entreprise. Nous sommes ravis de vous accompagner dans votre parcours professionnel.
+      </p>
+      <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+        <a routerLink="/portal/feuille-temp/add" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+          Saisir une feuille de temps
+          <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+          </svg>
+        </a>
+        <a routerLink="/portal/profile" class="py-3 px-5 sm:ms-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+          Voir mon profil
+        </a>  
+      </div>
+    </div>
+  </section>
+  <section class="bg-white dark:bg-gray-900 py-10 px-4 sm:px-8 lg:px-16 mt-5">
+    <div class="max-w-screen-xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">Fonctionnalités principales</h2>
+      
+      <div class="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
+        
+        <!-- Carte Congés -->
+        <a routerLink="/portal/conges" class="flex items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-col md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+            <img class="object-cover w-full rounded-t-lg h-96 md:h-auto" src="/front/conge.jpg" alt="Congés">
+            <div class="flex flex-col justify-between p-4 leading-normal">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Gestion des congés</h5>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Demandez, suivez et consultez vos congés en toute simplicité.</p>
+            </div>
+        </a>
+  
+        <!-- Carte Feuille de temps -->
+         <a routerLink="/portal/feuille-temp" class="flex items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-col md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+            <img class="object-cover w-full rounded-t-lg h-96 md:h-auto" src="/front/feuilletemps.jpg" alt="Congés">
+            <div class="flex flex-col justify-between p-4 leading-normal">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Feuilles de temps</h5>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Saisissez et consultez vos heures de travail rapidement et efficacement chaque jour.</p>
+            </div>
+        </a>
+  
+        <!-- Carte Évaluation de performance -->
+        <a routerLink="/portal/evaluation-performance" class="flex items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-col md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+            <img class="object-cover w-full rounded-t-lg h-96 md:h-auto" src="/front/evalperf.jpg" alt="Congés">
+            <div class="flex flex-col justify-between p-4 leading-normal">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Évaluation de performance</h5>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Consultez et participez à vos évaluations pour suivre votre progression professionnelle.</p>
+            </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  
