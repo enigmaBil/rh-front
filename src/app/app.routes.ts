@@ -1,17 +1,15 @@
 import { Routes } from '@angular/router';
-import {congesRoute} from './views/conges/conge.route';
-import {employeRoute} from './views/employes/employe.route';
-import {dashboardRoute} from './views/dashboard/dashboard.route';
-import {evaluationPerformanceRoute} from './views/evaluation-performance/evaluation-performance.route';
-import {feuilleTempRoute} from './views/feuille-temp/feuille-temp.route';
 import {authRoute} from './views/auth/auth.route';
 import {authGuard} from './core/guards/auth.guard';
 import {roleGuard} from './core/guards/role.guard';
 import {BaseComponent} from './layouts/base/base.component';
-import {EmployeDashboardComponent} from './views/dashboard/employe-dashboard/employe-dashboard.component';
-import {AdminDashboardComponent} from './views/dashboard/admin-dashboard/admin-dashboard.component';
-import {BaseEmployeComponent} from './layouts/base-employe/base-employe.component';
-import {EmployeProfilComponent} from './views/profils/employe-profil/employe-profil.component';
+import { congesRoute } from './views/admin/conges/conge.route';
+import { employeRoute } from './views/admin/employes/employe.route';
+import { evaluationPerformanceRoute } from './views/admin/evaluation-performance/evaluation-performance.route';
+import { feuilleTempRoute } from './views/admin/feuille-temp/feuille-temp.route';
+import { BaseEmployeComponent } from './layouts/base-employe/base-employe.component';
+import { EmployeDashboardComponent } from './views/site/dashboard/employe-dashboard.component';
+import { EmployeProfilComponent } from './views/site/profil/employe-profil.component';
 
 
 export const routes: Routes = [
@@ -29,7 +27,7 @@ export const routes: Routes = [
       // Dashboard Admin & RH (protégé)
       {
         path: 'dashboard',
-        loadComponent: () => import('./views/dashboard/admin-dashboard/admin-dashboard.component').then(c=>c.AdminDashboardComponent),
+        loadComponent: () => import('./views/admin/admin-dashboard/admin-dashboard.component').then(c=>c.AdminDashboardComponent),
         canActivate: [roleGuard],
         data:{roles: ["ADMIN", "RH"], breadcrumb: 'Dashboard'},
       },
@@ -76,7 +74,75 @@ export const routes: Routes = [
         data: {roles: ['EMPLOYE']}
       },
 
-      // Autres routes protégées accessibles selon le rôle
+      {
+        path: 'feuille-temp',
+        canActivate: [roleGuard],
+        data: {roles: ['EMPLOYE']},
+        children: [
+          {
+            path: "",
+            loadComponent: () => import("./views/site/feuille-temp/feuille-temp-page/feuille-temp-page.component").then(c => c.FeuilleTempPageComponent)
+          },
+          {
+            path: "add",
+            loadComponent: () => import("./views/site/feuille-temp/feuille-temp-create/feuille-temp-create.component").then(c => c.FeuilleTempCreateComponent)
+          },
+          {
+            path: ":id/edit",
+            loadComponent: () => import("./views/site/feuille-temp/feuille-temp-update/feuille-temp-update.component").then(c => c.FeuilleTempUpdateComponent)
+          },
+          {
+            path: ":id",
+            loadComponent: () => import("./views/site/feuille-temp/feuille-temp-show/feuille-temp-show.component").then(c => c.FeuilleTempShowComponent)
+          }
+        ]
+      },
+      {
+        path: 'conges',
+        canActivate: [roleGuard],
+        data: {roles: ['EMPLOYE']},
+        children: [
+          {
+            path: "",
+            loadComponent: () => import("./views/site/conges/conge-page/conge-page.component").then(c => c.CongePageComponent)
+          },
+          {
+            path: "add",
+            loadComponent: () => import("./views/site/conges/conge-add/conge-add.component").then(c => c.CongeAddComponent)
+          },
+          {
+            path: ":id/edit",
+            loadComponent: () => import("./views/site/conges/conge-update/conge-update.component").then(c => c.CongeUpdateComponent)
+          },
+          {
+            path: ":id",
+            loadComponent: () => import("./views/site/conges/conge-show/conge-show.component").then(c => c.CongeShowComponent)
+          }
+        ]
+      },
+      {
+        path: 'evaluation-performance',
+        canActivate: [roleGuard],
+        data: {roles: ['EMPLOYE']},
+        children: [
+          {
+            path: "",
+            loadComponent: () => import("./views/site/evaluation-performance/evaluation-performance-page/evaluation-performance-page.component").then(c => c.EvaluationPerformancePageComponent)
+          },
+          {
+            path: "add",
+            loadComponent: () => import("./views/site/evaluation-performance/evaluation-performance-add/evaluation-performance-add.component").then(c => c.EvaluationPerformanceAddComponent)
+          },
+          {
+            path: ":id/edit",
+            loadComponent: () => import("./views/site/evaluation-performance/evaluation-performance-update/evaluation-performance-update.component").then(c => c.EvaluationPerformanceUpdateComponent)
+          },
+          {
+            path: ":id",
+            loadComponent: () => import("./views/site/evaluation-performance/evaluation-performance-show/evaluation-performance-show.component").then(c => c.EvaluationPerformanceShowComponent)
+          }
+        ]
+      },
       {
         path: 'profile',
         component: EmployeProfilComponent,
