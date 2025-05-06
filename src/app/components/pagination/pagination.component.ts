@@ -1,24 +1,28 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { Component, computed, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
-  imports: [],
+  imports: [NgClass],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.css'
 })
 export class PaginationComponent {
-  @Input() totalItems: number = 1000;
-  @Input() itemsPerPage: number = 10;
+  @Input() totalItems: number = 0;
+  @Input() itemsPerPage: number = 5;
   @Input() currentPage: number = 1;
-  @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() pageChange = new EventEmitter<number>();
 
+  // Calculer le nombre total de pages
   get totalPages(): number {
     return Math.ceil(this.totalItems / this.itemsPerPage);
   }
 
-  get pages(): number[] {
-    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
-  }
+  pages = computed(() => Array.from({ length: this.totalPages }, (_, i) => i + 1));
+
+  // get pages(): number[] {
+  //   return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  // }
 
   changePage(page: number): void {
     if (page >= 1 && page <= this.totalPages && page !== this.currentPage) {
@@ -38,5 +42,17 @@ export class PaginationComponent {
     }
   }
 
-  protected readonly Math = Math;
+  gotoPage(page: number): void {
+    if (page < 1 || page > this.totalPages) return;
+    this.currentPage = page;
+    this.pageChange.emit(this.currentPage);
+  }
+
+  getFirstItemIndex(): number {
+    return (this.currentPage - 1) * this.itemsPerPage + 1;
+  }
+  
+  getLastItemIndex(): number {
+    return Math.min(this.currentPage * this.itemsPerPage, this.totalItems);
+  }
 }
