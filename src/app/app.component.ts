@@ -20,7 +20,8 @@ export class AppComponent implements OnInit {
   
   ngOnInit(): void {
     this.flowbite.loadFlowbite(fb => {
-      fb.initDropdowns()
+      fb.initDropdowns();
+      fb.initAccordion();
     });
 
     this.switchTheme();

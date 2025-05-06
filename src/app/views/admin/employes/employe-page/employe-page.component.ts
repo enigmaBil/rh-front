@@ -4,10 +4,11 @@ import { BreadcrumbComponent } from '../../../../components/breadcrumb/breadcrum
 import { PaginationComponent } from '../../../../components/pagination/pagination.component';
 import { User } from '../../../../core/models/user';
 import { EmployeService } from '../../../../core/services/employé/employe.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-employe-page',
-  imports: [PaginationComponent, BreadcrumbComponent, RouterLink],
+  imports: [PaginationComponent, BreadcrumbComponent, RouterLink, FormsModule],
   templateUrl: './employe-page.component.html',
   styleUrl: './employe-page.component.css'
 })
@@ -43,7 +44,8 @@ export class EmployePageComponent {
   }
 
   filterUsers() {
-    if (this.searchQuery) {
+    const query = this.searchQuery.toLowerCase();
+    if (query) {
       this.filteredUsers = this.users.filter(user => 
         user.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
         user.email.toLowerCase().includes(this.searchQuery.toLowerCase()) ||

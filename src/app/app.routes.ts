@@ -55,7 +55,7 @@ export const routes: Routes = [
         path: 'feuille-temp',
         children: feuilleTempRoute,
         canActivate: [roleGuard],
-        data:{roles: ["ADMIN", "RH"]},
+        data:{roles: ["ADMIN", "RH"], breadcrumb: 'Feuille de temps', url: 'admin/feuille-temp'},
       },
     ]
   },
