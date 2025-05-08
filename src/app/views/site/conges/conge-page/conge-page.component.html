@@ -20,7 +20,6 @@
                             <tr>
                                 <th class="px-4 py-2">Date de début</th>
                                 <th class="px-4 py-2">Date de fin</th>
-                                <th class="px-4 py-2">Motif</th>
                                 <th class="px-4 py-2">Statut</th>
                             </tr>
                         </thead>
@@ -29,10 +28,10 @@
                                 class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
                                 <td class="px-4 py-2">{{ demande.dateDebut | date:'shortDate' }}</td>
                                 <td class="px-4 py-2">{{ demande.dateFin | date:'shortDate' }}</td>
-                               
                                 <td class="px-4 py-2" [ngClass]="getStatutStyle(demande.statut)">
                                     {{ getStatutLibelle(demande.statut) }}
                                 </td>
+                                
                             </tr>
                         </tbody>
                     </table>

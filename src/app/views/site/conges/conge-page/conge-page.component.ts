@@ -5,6 +5,7 @@ import { AsyncPipe, NgIf, NgFor } from '@angular/common';
 import { CongerService } from '../../../../core/services/conge/conger.service';
 import { StatutConger } from '../../../../core/models/conge.model';
 import { BreadcrumbComponent } from '../../../../components/breadcrumb/breadcrumb.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-conge-page',
@@ -19,7 +20,6 @@ export class CongePageComponent {
   demandes$ = this.congeService.getAllCongers();
 
   getStatutLibelle(statut: StatutConger | undefined): string {
-    
     if (!statut) return 'Non défini'; 
     switch (statut) {
       case StatutConger.ACCEPTE: return 'Accepté';
@@ -30,7 +30,6 @@ export class CongePageComponent {
   }
   
   getStatutStyle(statut: StatutConger | undefined): string {
-    
     if (!statut) return 'text-gray-500';  
     switch (statut) {
       case StatutConger.ACCEPTE: return 'text-green-600 font-semibold';
@@ -39,4 +38,6 @@ export class CongePageComponent {
       default: return '';
     }
   }
+
+  
 }

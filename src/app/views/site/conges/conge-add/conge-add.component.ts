@@ -27,16 +27,19 @@ export class CongeAddComponent {
   }
 
   handleSubmit() {
+    console.log('Formulaire soumis', this.congeForm.value); // <-- pour debug
+  
     if (this.congeForm.valid) {
       this.loading = true;
       const congerData: Conger = this.congeForm.value;
-
+  
       this.congerService.addConger(congerData).subscribe({
         next: () => {
-          
+          console.log('Ajout réussi'); // <-- debug
           this.loading = false;
         },
         error: (err) => {
+          console.error('Erreur backend :', err); // <-- debug
           this.loading = false;
           this.errorMessage = 'Erreur lors de l\'ajout du congé';
         }
@@ -45,4 +48,5 @@ export class CongeAddComponent {
       this.errorMessage = 'Veuillez remplir tous les champs';
     }
   }
+  
 }

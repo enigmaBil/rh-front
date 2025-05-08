@@ -23,6 +23,12 @@ export class CongerService {
 
   // Update statut of a congé
   updateStatut(id: number, statut: StatutConger): Observable<Conger> {
-    return this.http.patch<Conger>(`${this.CONGE_URL}/${id}`, { statut }); 
+    return this.http.patch<Conger>(`${this.CONGE_URL}/${id}`, { statut });
+  }
+  getCongersByUserId(userId: number): Observable<Conger[]> {
+    return this.http.get<Conger[]>(`${this.CONGE_URL}/user/${userId}`);
+  }
+  deleteConger(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.CONGE_URL}/${id}`);
   }
 }
