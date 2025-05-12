@@ -1,1 +1,26 @@
-<p>avaluation-performance-update works!</p>
+<section class="container">
+    <h2>Mise à jour de l’évaluation</h2>
+  
+    <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit()" class="form-group">
+      <label for="score">Score *</label>
+      <input id="score" type="number" formControlName="score" placeholder="Entrez un score entre 0 et 10" />
+      <div *ngIf="evaluationForm.get('score')?.invalid && evaluationForm.get('score')?.touched" class="error">
+        Le score est requis (entre 0 et 10)
+      </div>
+  
+      <label for="commentaire">Commentaire *</label>
+      <textarea id="commentaire" formControlName="commentaire" rows="4" placeholder="Votre commentaire..."></textarea>
+      <div *ngIf="evaluationForm.get('commentaire')?.invalid && evaluationForm.get('commentaire')?.touched" class="error">
+        Le commentaire est requis
+      </div>
+  
+      <label for="dateEvaluation">Date d’évaluation *</label>
+      <input id="dateEvaluation" type="date" formControlName="dateEvaluation" />
+      <div *ngIf="evaluationForm.get('dateEvaluation')?.invalid && evaluationForm.get('dateEvaluation')?.touched" class="error">
+        La date est requise
+      </div>
+  
+      <button type="submit" [disabled]="evaluationForm.invalid">Mettre à jour</button>
+    </form>
+  </section>
+  

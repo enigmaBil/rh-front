@@ -1,1 +1,18 @@
-<p>avaluation-performance-list works!</p>
+<section class="container">
+    <h2>Liste des évaluations</h2>
+  
+    <ng-container *ngIf="evaluations.length > 0; else noData">
+      <div class="evaluations-list">
+        <div *ngFor="let eval of evaluations" class="card">
+          <p><strong>Score :</strong> {{ eval.score }}</p>
+          <p><strong>Commentaire :</strong> {{ eval.commentaire }}</p>
+          <p><strong>Date d’évaluation :</strong> {{ eval.dateEvaluation | date: 'longDate' }}</p>
+        </div>
+      </div>
+    </ng-container>
+  
+    <ng-template #noData>
+      <p class="empty">Aucune évaluation enregistrée.</p>
+    </ng-template>
+  </section>
+  
