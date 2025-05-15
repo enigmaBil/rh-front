@@ -1,11 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-notifications',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, NgFor],
   templateUrl: './notifications.component.html',
-  styleUrl: './notifications.component.css'
+  styleUrls: ['./notifications.component.css'],
 })
-export class NotificationsComponent {
-
+export class NotificationsComponent implements OnInit {
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+ 
 }

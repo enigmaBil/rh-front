@@ -26,6 +26,7 @@ export class AuthService {
         // Les deux tokens sont automatiquement stockés dans des cookies HTTP-only
         // Nous mettons à jour l'état de l'utilisateur connecté
         this.userRole = response.user.role;
+        
         localStorage.setItem('userRole',this.userRole);
         localStorage.setItem("userName", response.user.name);
         localStorage.setItem("userEmail", response.user.email);

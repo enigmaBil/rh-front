@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Conger, StatutConger } from '../../../../core/models/conge.model';
 import { CongerService } from '../../../../core/services/conge/conger.service';
 import { BreadcrumbComponent } from '../../../../components/breadcrumb/breadcrumb.component';
+import { PaginationComponent } from '../../../../components/pagination/pagination.component';
 
 @Component({
   selector: 'app-conge-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule, BreadcrumbComponent],
+  imports: [CommonModule, FormsModule, BreadcrumbComponent, PaginationComponent],
   templateUrl: './conge-page.component.html',
   styleUrls: ['./conge-page.component.css']
 })
@@ -19,14 +19,9 @@ export class CongePageComponent implements OnInit {
   itemsPerPage = 5;
   currentPage = 1;
   searchText = '';
-
-
   StatutConger = StatutConger;
 
-  constructor(
-    private congerService: CongerService,
-    private http: HttpClient
-  ) { }
+  constructor(private congerService: CongerService) { }
 
   ngOnInit(): void {
     this.getCongers();
@@ -40,12 +35,19 @@ export class CongePageComponent implements OnInit {
   }
 
   updateStatut(id: number, statut: 'accepte' | 'refuse') {
-    this.http.patch(`http://localhost:3000/api/v1/conger/${id}`, {
-      statut: statut
-    }).subscribe({
+    const statusEnum = statut === 'accepte' ? StatutConger.ACCEPTE : StatutConger.REFUSE;
+    this.congerService.updateStatut(id, statusEnum).subscribe({
       next: (res) => {
         console.log('Mise à jour réussie', res);
-        this.getCongers(); // Rafraîchir la liste après mise à jour
+
+        // Mettre à jour dans allCongers
+        const index = this.allCongers.findIndex(c => c.id === id);
+        if (index !== -1) {
+          this.allCongers[index].statut = statusEnum;
+        }
+
+        // Réappliquer la recherche et pagination proprement
+        this.applySearch();
       },
       error: (err) => {
         console.error('Erreur lors de la mise à jour du statut', err);
