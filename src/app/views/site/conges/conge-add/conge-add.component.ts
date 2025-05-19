@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CongerService } from '../../../../core/services/conge/conger.service';
 import { Conger } from '../../../../core/models/conge.model';
 import { BreadcrumbComponent } from '../../../../components/breadcrumb/breadcrumb.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-conge-add',
@@ -33,12 +34,27 @@ export class CongeAddComponent {
 
       this.congerService.addConger(congerData).subscribe({
         next: () => {
-          
           this.loading = false;
+          Swal.fire({
+            icon: 'success',
+            title: 'Ajout réussi',
+            text: 'Le congé a été ajouté avec succès !',
+            confirmButtonText: 'OK',
+            timer: 2000,
+            timerProgressBar: true
+          });
+
+          this.congeForm.reset();
         },
         error: (err) => {
+          console.error('Erreur backend :', err);
           this.loading = false;
-          this.errorMessage = 'Erreur lors de l\'ajout du congé';
+          Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Erreur lors de l\'ajout du congé.',
+            confirmButtonText: 'OK'
+          });
         }
       });
     } else {
